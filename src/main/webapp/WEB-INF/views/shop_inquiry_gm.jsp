@@ -1,0 +1,78 @@
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+    pageEncoding="UTF-8"%>
+<c:set var="contextPath" value="${pageContext.request.contextPath }" />
+<%@ page session="true" %>
+<!DOCTYPE html>
+<html lang="zxx">
+<!-- head -->
+<script src="https://code.jquery.com/jquery-1.12.4.js"></script>
+<%@ include file="include/head.jsp" %>
+<!-- head end -->
+<script>
+
+</script>
+<body>
+<!-- header -->
+<%@ include file="include/header.jsp" %>
+<!-- header end -->
+<style type="text/css">
+   a:hover { color:black; text-decoration: none;}
+</style>
+<!-- hero -->
+<%@ include file="include/hero.jsp" %>
+<!-- hero end -->
+<!-- Main content -->
+ <section class="content container-fluid">
+   <div class="container">
+            <div class="row">
+                <div class="col-lg-11 col-md-7">
+                    <div class="box-header">
+                  </div>
+                  <br>
+                 <br>
+                    <div class="box-header">
+                     <h3 class="box-title" >상품 문의 내역</h3>
+                  </div>
+                   <br>
+                   <br>
+                <div class="table-responsive">
+                       <table class="table" style="width:100%">
+                        <tr>
+                           <th style="text-align:center">글번호</th>
+                           <th style="text-align:center">글내용</th>
+                           <th style="text-align:center">작성일</th>
+                           <th style="text-align:center">작성자</th>
+                           <th style="text-align:center">처리상태</th>
+                        </tr> 
+                        <c:forEach var="shop_inquiry" items="${shop_inquiry_gm}">
+                           <tr>
+                              <td style="text-align:center">${shop_inquiry.i_p_num}</td>
+                              <td style="text-align:center"><a href="${contextPath}/mypageGM/inquirydetail?i_p_num=${shop_inquiry.i_p_num}">${shop_inquiry.i_content}</a></td>
+                              <td style="text-align:center">${shop_inquiry.i_date}</td>
+                              <td style="text-align:center">${shop_inquiry.u_p_id}</td>
+                              <c:if test="${shop_inquiry.i_state==2}">
+                              <td style="text-align:center">답변대기중</td>
+	                           </c:if>
+	                           <c:if test="${shop_inquiry.i_state==3}">
+	                              <td style="text-align:center">답변완료</td>
+	                           </c:if>
+	                       </tr>
+                         </c:forEach>
+                       </table>
+                       <br>
+                       <br>
+                       <br>
+               </div>
+            </div>
+         </div>
+      </div>
+</section>
+<!-- Footer Section Begin -->
+<%@ include file="include/footertest.jsp" %>
+<!-- Footer Section End -->
+<!-- Js Plugins -->
+<%@ include file="include/plug_in.jsp" %>
+      
+</body>
+</html>
